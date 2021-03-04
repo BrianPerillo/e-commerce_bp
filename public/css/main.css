@@ -1,0 +1,28 @@
+a {
+    color:black;
+}
+
+a:hover {
+    text-decoration: none;
+    color:black;
+    
+}
+
+.product_show{
+    box-shadow: 3px 3px 10px rgba(211, 211, 211, 0.781);border-radius:10px
+}
+
+.div_img{
+    border:1px solid rgba(226, 226, 226, 0.486);border-radius:10px 10px 0px 0px
+}
+
+.short_description{
+border:1px solid rgba(226, 226, 226, 0.726);border-radius:0px 0px 10px 10px
+}
+
+.long_description{
+    height:50%;
+    box-shadow: 2px 2px 10px rgb(211, 211, 211, 0.781);
+    background-color: rgba(205, 208, 248, 0.288);
+    border-radius:10px
+}
