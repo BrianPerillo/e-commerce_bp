@@ -34,7 +34,7 @@
             @livewire('navigation-menu')
 
             <!-- Page Content -->
-            <main style="height: 98vh;">
+            <main>
                 {{ $slot }}
                
             </main>

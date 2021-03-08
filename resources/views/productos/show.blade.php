@@ -31,9 +31,9 @@
 
                 <div class="col-md-5 p-0 m-3" style="border-right: 1px solid rgb(196, 196, 196)">
 
-                    <div class="">
-                        <img class="p-2" src="{{$product->photo}}" alt="Remera Negra" style="width:350px;height:350px;margin:auto"><br>
-                    </div>
+                    <figure class="zoom m-auto" onmousemove="zoom(event)" style="width:350px;height:350px;background-image: url({{$product->photo}})">
+                        <img id="photo" class="p-0 m-auto" src="{{$product->photo}}" alt="Remera Negra" style="width:350px;height:350px;"><br>
+                    </figure>
 
                     <div class="p-3">
 
@@ -184,5 +184,18 @@
         pane.classList.add("active");
     };
     });
+
+</script>
+
+<script>
+
+    function zoom(e){
+    var zoomer = e.currentTarget;
+    e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+    e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+    x = offsetX/zoomer.offsetWidth*100
+    y = offsetY/zoomer.offsetHeight*100
+    zoomer.style.backgroundPosition = x + '% ' + y + '%';
+}
 
 </script>

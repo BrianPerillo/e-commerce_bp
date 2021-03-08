@@ -13,8 +13,9 @@ class ProductosController extends Controller
     
     public function index(Category $category){
 
-        $products = $category->products;
-        $name = $category->name;
+        // $products = $category->products;
+         $products = Product::where('category_id', '=', "$category->id")->paginate(12);
+         $name = $category->name;
 
         return view('productos.category')->with(compact('name', 'products'));
 

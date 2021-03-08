@@ -31,7 +31,6 @@ class AddColorIdAndSizeIdToCartProductTable extends Migration
         
         Schema::table('cart_product', function (Blueprint $table) {
             $table->dropForeign('posts_color_id_foreign');
-            $table->dropForeign('posts_size_id_foreign');
             $table->dropColumn(['color_id', 'size_id']);
         });
     }
