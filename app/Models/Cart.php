@@ -19,7 +19,8 @@ class Cart extends Model
 
     }
 
-    public function cart_products(){
+    //Traigo los registro que haya en cart_products (los productos del carrito)
+    public function products(){
 
         return $this->hasMany(Cart_Product::class);
 

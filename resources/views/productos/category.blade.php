@@ -5,7 +5,7 @@
         </h2>
     </x-slot> --}}
 
-    <div class="py-12 bg-white">
+    <div class="py-4 bg-white">
 
         <div class="container" style="overflow: hidden">
             <h1>{{$name}}</h1>

@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Size;
 use App\Models\Color;
 use App\Models\Subcategory;
+use App\Models\Cart_Product;
 
 class Product extends Model
 {
@@ -28,6 +29,12 @@ class Product extends Model
 
     public function subcategory(){
         return $this->belongsTo(Subcategory::class);
+    }
+
+    public function carts_products(){
+
+        return $this->hasMany(Cart_Product::class);
+
     }
 
 

@@ -9,28 +9,37 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Cart_Product;
-
+use Illuminate\Support\Facades\URL;
 
 class CartController extends Controller
 {
     
     public function index(User $user){
         
+        // Esta manera quedó descartada porque no podía usar el paginate por eso los trigo abajo con la típica consulta de eloquent. 
+        // $cart = $user->cart;
+        // $cart_products = $cart[0]->products;
 
-        return view('user.cart');
+        $cart = Cart::where('user_id', "=", "$user->id")->get()->first();
+        $cart_id = $cart->id;
+
+        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(5);
+
+        return view('user.cart')->with(compact('cart_products'));
+
     }
 
-    public function agregar_al_carrito(Product $product){
-
+    public function agregar_al_carrito(Product $product, Request $request){
+        
         $user_id = auth()->user()->id;
 
         $user = User::find($user_id);
 
         $tiene_cart = $user->cart;
-
-        //Pregunto si el usuario no tiene un carrito y de ser así que se lo cree:
+        
+        //Pregunto si el usuario NO tiene un carrito y de ser así se lo creo y agrego el producto:
         if(sizeof($tiene_cart)==0){  
-            
+
             $cart = new Cart();
 
             $cart->user_id = $user_id;
@@ -39,26 +48,66 @@ class CartController extends Controller
             $cart_product = new Cart_Product();
             $cart_product->product_id = $product->id;
             $cart_product->cart_id = $cart->id;
-            $cart_product->quantity = 1;
-            $cart_product->total_price = 1*$product->price;
+            $cart_product->quantity = $request->quantity;
+            $cart_product->total_price = $request->quantity*$product->price;
+            $cart_product->color_id = $request->color;
+            $cart_product->size_id = $request->size;
             $cart_product->save();
         }
 
         //En caso que ya tenga un carrito, que agregue el producto al cart_product sin crearle otro carrito:
         else{
-            //Recupero el carrito del usuario:
-            $cart_id = auth()->user()->cart[0]->id;
 
+            //Primero me aseguro que el producto que quiere agregar no exista en el carrito.
+
+            //Recupero el carrito del usuario:
+            $cart = auth()->user()->cart[0];
+
+            //Recupero los productos de ese carrito:
+            $cart_products = $cart->products;
+
+            //Hago un foreach en el que consulto coincidencias
+            foreach($cart_products as $cart_product){
+
+                $product_id = $cart_product->product_id;
+                $color_id = $cart_product->color_id;
+                $size_id = $cart_product->size_id;
+
+                //Si el producto que está queriendo agregar ya existe en el carrito (Hay coincidencia):
+                if($product_id == $product->id && $color_id == $request->color && $size_id == $request->size){
+
+                    $message = "Este producto ya existe en tu carrito con el mismo talle y color. Podés editar la cantidad desde tu carrito!";
+                    $type = "warning";
+
+                    session()->put('message', "$message");
+                    session()->put('type', "$type");
+
+                    return Redirect::back();
+
+                }
+
+            }
+
+            
             $cart_product = new Cart_Product();
 
             $cart_product->product_id = $product->id;
-            $cart_product->cart_id = $cart_id;
-            $cart_product->quantity = 1;
-            $cart_product->total_price = 1*$product->price;
+            $cart_product->cart_id = $cart->id;
+            $cart_product->quantity = $request->quantity;
+            $cart_product->total_price = $request->quantity*$product->price;
+            $cart_product->color_id = $request->color;
+            $cart_product->size_id = $request->size;
             $cart_product->save();
         }
 
-        return Redirect::back()->with('message', 'Producto Agregado!');
+            $message = "Producto Agregado al carrito!";
+            $type = "success";
+
+            session()->put('message', "$message");
+            session()->put('type', "$type");
+
+
+        return Redirect::back();
     }
 
 }

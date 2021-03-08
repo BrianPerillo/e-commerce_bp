@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +22,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+
+                $previous_url = $request->session()->get('previous_url');
+
+                 return redirect("$previous_url")->with('message', 'Producto Agregado!');
+                // return redirect(RouteServiceProvider::HOME);
+
             }
         }
 

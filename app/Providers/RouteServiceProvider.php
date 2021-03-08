@@ -7,9 +7,12 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class RouteServiceProvider extends ServiceProvider
 {
+
+
     /**
      * The path to the "home" route for your application.
      *
@@ -17,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/';
+    public const HOME = "/";
 
     /**
      * The controller namespace for the application.
@@ -33,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    
     public function boot()
     {
         $this->configureRateLimiting();
@@ -47,6 +51,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
     }
 
     /**

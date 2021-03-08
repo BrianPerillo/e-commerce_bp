@@ -23,9 +23,9 @@ Route::get('/', function () {
          return view('index');
 })->name('index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/cart/{product}', [CartController::class, "agregar_al_carrito"] )->name('agregar_al_carrito');
+Route::get('/cart/{user}/productos', [CartController::class, "index"])->name('user.cart');
 
-Route::get('/cart/{user}', [CartController::class, "index"])->name('user.cart');
+Route::middleware(['auth:sanctum', 'verified'])->get('/cart/{product}', [CartController::class, "agregar_al_carrito"] )->name('agregar_al_carrito');
 
 Route::get('/category/{category}/remeras', [ProductosController::class, "index"])->name('productos.remeras');
 Route::get('/category/{category}/buzos', [ProductosController::class, "index"])->name('productos.buzos');
