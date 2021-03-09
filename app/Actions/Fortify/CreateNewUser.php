@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
+use App\Models\Cart;
+
+
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -27,10 +30,22 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        $user = new User;
+
+        $user->name = $input['name'];
+        $user->email = $input['email'];
+        $user->password = Hash::make($input['password']);
+        $user->save();
+
+
+        $cart = new Cart();
+
+        $cart->user_id = $user->id;
+        $cart->save();
+
+        return $user;
+
+
+
     }
 }

@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
 
                 $previous_url = $request->session()->get('previous_url');
 
-                 return redirect("$previous_url")->with('message', 'Producto Agregado!');
+                 return redirect("$previous_url");
                 // return redirect(RouteServiceProvider::HOME);
 
             }

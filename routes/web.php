@@ -27,9 +27,9 @@ Route::get('/cart/{user}/productos', [CartController::class, "index"])->name('us
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart/{product}', [CartController::class, "agregar_al_carrito"] )->name('agregar_al_carrito');
 
-Route::get('/category/{category}/remeras', [ProductosController::class, "index"])->name('productos.remeras');
-Route::get('/category/{category}/buzos', [ProductosController::class, "index"])->name('productos.buzos');
-Route::get('/category/{category}/pantalones', [ProductosController::class, "index"])->name('productos.pantalones');
-Route::get('/category/{category}/zapatillas', [ProductosController::class, "index"])->name('productos.zapatillas');
+Route::get('/remeras/{category}/{gender}', [ProductosController::class, "index"])->name('productos.remeras');
+Route::get('/buzos/{category}/{gender}', [ProductosController::class, "index"])->name('productos.buzos');
+Route::get('/pantalones/{category}/{gender}', [ProductosController::class, "index"])->name('productos.pantalones');
+Route::get('/zapatillas/{category}/{gender}', [ProductosController::class, "index"])->name('productos.zapatillas');
 
 Route::get('/{category}/{product}', [ProductosController::class, "show"])->name('productos.show');

@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
+use App\Models\Gender;
 
 class ProductosController extends Controller
 {
     
-    public function index(Category $category){
+    public function index(Category $category, Gender $gender){
 
         // $products = $category->products;
-         $products = Product::where('category_id', '=', "$category->id")->paginate(12);
-         $name = $category->name;
+        $products = Product::where('category_id', '=', "$category->id")->where('gender_id', '=', "$gender->id")->paginate(9);
+        $name = $category->name;
 
-        return view('productos.category')->with(compact('name', 'products'));
+        //Guardo subcategorias (para los filtros):
+        $subcategories = Category::find("$category->id")->subcategories;
+
+        return view('productos.category')->with(compact('name', 'products', 'subcategories'));
 
     }
 

@@ -17,33 +17,34 @@
                     </x-jet-nav-link>
                 </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('productos.remeras', '1') }}" :active="request()->routeIs('productos.remeras')">
-                        {{ "Remeras" }}
+                    <x-jet-nav-link href="" {{-- :active="request()->routeIs('productos.remeras')" --}}>  
+                        <ul class="menu m-0">
+                            <li class="pt-4">Hombre
+                                <ul class="pb-2">
+                                    <li class="p-2"><a href="{{ route('productos.remeras', ['1', '1']) }}">Remeras</a></li>
+                                    <li class="p-2"><a href="{{ route('productos.buzos', ['2', '1']) }}">Buzos</a></li>
+                                    <li class="p-2"><a href="{{ route('productos.pantalones', ['3', '1']) }}">Pantalones</a></li>
+                                    <li class="p-2"><a href="{{ route('productos.zapatillas', ['4', '1']) }}">Zapatillas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('productos.buzos', '2') }}" :active="request()->routeIs('productos.buzos')">
-                        {{ "Buzos" }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('productos.pantalones', '3') }}" :active="request()->routeIs('productos.pantalones')">
-                        {{ "Pantalones" }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('productos.zapatillas', '4') }}" :active="request()->routeIs('productos.zapatillas')">
-                        {{ "Zapatillas" }}
+                <div class=" hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="" {{-- :active="request()->routeIs('productos.buzos')" --}}>
+                        <ul class="menu m-0">
+                            <li class="pt-4">Mujer
+                                <ul class="pb-2">
+                                    <li class="p-2"><a href="{{ route('productos.remeras', ['1', '2']) }}">Remeras</li></a>
+                                    <li class="p-2"><a href="{{ route('productos.buzos', ['2', '2']) }}">Buzos</a></li>
+                                    <li class="p-2"><a href="{{ route('productos.pantalones', ['3', '2']) }}">Pantalones</a></li>
+                                    <li class="p-2"><a href="{{ route('productos.zapatillas', ['4', '2']) }}">Zapatillas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </x-jet-nav-link>
                 </div>
 
-                @auth
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('user.cart', auth()->user()->id) }}" :active="request()->routeIs('user.cart')">
-                            {{ "Carrito" }}
-                        </x-jet-nav-link>
-                    </div>
-                @endauth
 
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -61,6 +62,7 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+
                 @if(auth()->user())
                     <!-- Settings Dropdown -->
                     <div class="ml-3 relative">
@@ -115,6 +117,13 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
+
+                <!-- Carrito -->
+
+                @auth
+                    <a class="ml-3" tyle="padding-top:5px" href="{{ route('user.cart', auth()->user()->id) }}"><i class="fal fa-shopping-cart fa-lg"></i></i></a>
+                @endauth
+
             </div>
 
             <!-- Hamburger -->

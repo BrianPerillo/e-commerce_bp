@@ -97,16 +97,19 @@
                                     </div>
 
                                     <div class="">
-                                        <div class="mr-2 mt-1 mb-1">
-                                            <button class="btn btn-danger">
-                                                 <span><i class="fas fa-trash-alt"></i></span>
-                                             </button>
-                                           </div>
-                                        <div class="mr-2 mt-2 mb-1">
-                                            <button class="btn btn-primary">
-                                                <span class="fas fa-edit" style="font-size: 14px"></span>
-                                            </button>
-                                        </div>
+                                        <form action="" method="post">
+                                            @csrf
+                                            <div class="mr-2 mt-1 mb-1">
+                                                <button class="btn btn-danger" value="{{$cart_product}}">
+                                                        <span><i class="fas fa-trash-alt"></i></span>
+                                                </button>
+                                                </div>
+                                            <div class="mr-2 mt-2 mb-1">
+                                                <button class="btn btn-primary">
+                                                    <span class="fas fa-edit" style="font-size: 14px"></span>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                              </div>
                         </div>

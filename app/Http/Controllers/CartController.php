@@ -31,41 +31,19 @@ class CartController extends Controller
 
     public function agregar_al_carrito(Product $product, Request $request){
         
-        $user_id = auth()->user()->id;
-
-        $user = User::find($user_id);
-
-        $tiene_cart = $user->cart;
-        
         //Pregunto si el usuario NO tiene un carrito y de ser así se lo creo y agrego el producto:
-        if(sizeof($tiene_cart)==0){  
+        //IMPORTANTE: ACÁ HABÍA UN IF QUE PREGUNTABA SI YA TENÍA CARRITO ESO AHORA NO ES NECESARIO YA QUE SIEMPRE VA A TENER CARRITO UN USUARIO REGISTRADO,
+        //YA QUE SE LE CREA AUTOMÁTICAMENTE AL MOMENTO DE REGISRARSE.
 
-            $cart = new Cart();
 
-            $cart->user_id = $user_id;
-            $cart->save();
-
-            $cart_product = new Cart_Product();
-            $cart_product->product_id = $product->id;
-            $cart_product->cart_id = $cart->id;
-            $cart_product->quantity = $request->quantity;
-            $cart_product->total_price = $request->quantity*$product->price;
-            $cart_product->color_id = $request->color;
-            $cart_product->size_id = $request->size;
-            $cart_product->save();
-        }
-
-        //En caso que ya tenga un carrito, que agregue el producto al cart_product sin crearle otro carrito:
-        else{
-
-            //Primero me aseguro que el producto que quiere agregar no exista en el carrito.
+        //Primero me aseguro que el producto que quiere agregar no exista en el carrito.
 
             //Recupero el carrito del usuario:
             $cart = auth()->user()->cart[0];
 
             //Recupero los productos de ese carrito:
             $cart_products = $cart->products;
-
+            
             //Hago un foreach en el que consulto coincidencias
             foreach($cart_products as $cart_product){
 
@@ -73,11 +51,16 @@ class CartController extends Controller
                 $color_id = $cart_product->color_id;
                 $size_id = $cart_product->size_id;
 
+                
                 //Si el producto que está queriendo agregar ya existe en el carrito (Hay coincidencia):
                 if($product_id == $product->id && $color_id == $request->color && $size_id == $request->size){
 
+
                     $message = "Este producto ya existe en tu carrito con el mismo talle y color. Podés editar la cantidad desde tu carrito!";
                     $type = "warning";
+
+                    session()->forget('message'); 
+                    session()->forget('type'); 
 
                     session()->put('message', "$message");
                     session()->put('type', "$type");
@@ -88,26 +71,31 @@ class CartController extends Controller
 
             }
 
+
+                $cart_product = new Cart_Product();
+
+                $cart_product->product_id = $product->id;
+                $cart_product->cart_id = $cart->id;
+                $cart_product->quantity = $request->quantity;
+                $cart_product->total_price = $request->quantity*$product->price;
+                $cart_product->color_id = $request->color;
+                $cart_product->size_id = $request->size;
+                $cart_product->save();
             
-            $cart_product = new Cart_Product();
 
-            $cart_product->product_id = $product->id;
-            $cart_product->cart_id = $cart->id;
-            $cart_product->quantity = $request->quantity;
-            $cart_product->total_price = $request->quantity*$product->price;
-            $cart_product->color_id = $request->color;
-            $cart_product->size_id = $request->size;
-            $cart_product->save();
-        }
+                $message = "Producto Agregado al carrito!";
+                $type = "success";
 
-            $message = "Producto Agregado al carrito!";
-            $type = "success";
-
-            session()->put('message', "$message");
-            session()->put('type', "$type");
+                session()->forget('message'); 
+                session()->forget('type'); 
+                session()->put('message', "$message");
+                session()->put('type', "$type");
 
 
-        return Redirect::back();
+                return Redirect::back();
+           
     }
+
+
 
 }

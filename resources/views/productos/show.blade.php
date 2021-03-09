@@ -21,9 +21,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+            {{-- Borro el msj de sessión --}}
+                @php
+                    session()->forget('message'); 
+                    session()->forget('type'); 
+                @endphp
             @endif
 
-            @php session()->forget('message'); session()->forget('type'); @endphp
 
             {{-- Detalle del Producto --}}
 
