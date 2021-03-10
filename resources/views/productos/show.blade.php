@@ -64,6 +64,9 @@
                                         <label for="{{$color->color}}"><div style="background-color: {{$color->color}};border-radius:20px"></div></label>
                                     @endforeach
                                 </div>
+                                @error('color')
+                                    <p>{{$message}}</p>
+                                @enderror
                             </div>
                             {{-- Talle --}}
                             <div class="col mx-auto p-2 mb-3" style="border-radius:10px;">
@@ -81,6 +84,7 @@
                                 <div>
                                     <input class="form-control" type="number" name="quantity" id="" value="1"  min="1"> 
                                 </div>
+                                
                             </div>
                             <div class="float-right p-3 mb-3" style="">
                                 <p style="padding: 0px; margin:0px;"><strong>Precio: ${{$product->price}}</strong></p>
