@@ -101,7 +101,7 @@ class CartController extends Controller
         $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(5);
 
 
-        return view('user.cart')->with(compact('cart_products'));
+        return redirect()->route('user.cart', "$user->id");
 
     }
 

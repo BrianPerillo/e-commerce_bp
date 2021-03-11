@@ -88,11 +88,13 @@
 
                                             <div class="col">
                                                 <select class="form-control" name="color" id="">
+                                                    <optgroup label="Color">
                                                     @foreach ($colors as $color)
                                                         <option name="color" value="{{$color->id}}" style="background-color:{{$color->color}};color:rgb(230, 230, 230);">
                                                             <p>{{$color->name}}</p>
                                                         </option>
                                                     @endforeach
+                                                    </optgroup>
                                                 </select>
                                             </div>
                                             
