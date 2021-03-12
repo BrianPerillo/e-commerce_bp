@@ -5,11 +5,10 @@
         </h2>
     </x-slot> --}}
 
-    <div class="py-4 bg-white">
+    <div class="py-4 bg-white"> 
 
-        <livewire:filters />
+        <livewire:filters :name="$name" :subcategories="$subcategories" :categoryId="$category_id" :genderId="$gender_id" :sizes="$sizes"/>
+        </livewire:filters>
 
     </div>
-
-
 </x-app-layout>

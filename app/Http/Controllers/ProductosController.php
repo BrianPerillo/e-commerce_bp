@@ -8,23 +8,31 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
 use App\Models\Gender;
+use App\Models\Size;
 
 class ProductosController extends Controller
 {
     
-    //ESTE MÉTODO QUEDA COMENTADO PORQUE AHORA SE ENCARGA DE ESTO EL COMPONENTE FILTER DE LIVEWIRE.
-    // public function index(Category $category, Gender $gender){ 
+    public function index(Category $category, Gender $gender){
+        //Ya no paso más los roducctos, sino que los consigue el componente de livewire para no tener problema con la paginación
+        // // $products = $category->products;
+        // $products = Product::where('category_id', '=', "$category->id")->where('gender_id', '=', "$gender->id")->get()->all();
 
-    //     // $products = $category->products;
-    //     $products = Product::where('category_id', '=', "$category->id")->where('gender_id', '=', "$gender->id")->paginate(9);
-    //     $name = $category->name;
 
-    //     //Guardo subcategorias (para los filtros):
-    //     $subcategories = Category::find("$category->id")->subcategories;
+        //Guardo datos para el compoonente:
+        $category_id = $category->id;
+        $gender_id = $gender->id;
+        $name = $category->name;
 
-    //     return view('productos.category')->with(compact('name', 'products', 'subcategories'));
+        //Guardo subcategorias (para los filtros):
+        $subcategories = Category::find("$category->id")->subcategories;
+      
+        //Guardo talles (para los filtros):
+        $sizes = Size::get();
 
-    // }
+        return view('productos.category')->with(compact('name', 'category_id', 'gender_id', 'subcategories', 'sizes'));
+
+    }
 
     public function show(Category $category, Product $product){
 

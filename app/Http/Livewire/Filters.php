@@ -7,38 +7,89 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Gender;
 use App\Models\Product;
-use App\Models\Subcategory;
 use Livewire\WithPagination;
 
 class Filters extends Component
 {
-    
-    use WithPagination;
 
     public $name;
     public $subcategories;
-    public $products;
+    public $sizes;
+    public $categoryId;
+    public $genderId;
+    public $subcategorySelected;
+    public $sizeSelected;
+   
+
+    use WithPagination;
 
 
-    public function index(){
-
-
-    }
-
-    
-
-
-    public function render(Category $category, Gender $gender)
+    public function render()
     {
+        
+        $categoryId = $this->categoryId;
+        $genderId = $this->genderId;
+
         // $products = $category->products;
-        $this->products = Product::where('category_id', '=', "$category->id")->where('gender_id', '=', "$gender->id")->paginate(9);
-        $this->name = $category->name;
-        
-        //Guardo subcategorias (para los filtros):
-        $category = Category::find("$category->id");
-        
-        $this->subcategories = Subcategory::where('category_id', '=', "$category->id")->get()->all();
-        
-        return view('livewire.filters', ['name'=>$this->name, 'subcategories'=> $this->subcategories, 'products'=> $this->products]);
+        $subcategorySelected = $this->subcategorySelected;
+        $sizeSelected = $this->sizeSelected;
+
+        if(strlen($this->subcategorySelected)>0 && strlen($this->sizeSelected)==0){
+            return view('livewire.filters', [
+                'products' => Product::where('category_id', '=', "$categoryId")->where('gender_id', '=', "$genderId")->where('subcategory_id', '=', "$subcategorySelected")->paginate(9),
+            ]);
+        }
+        if(strlen($this->sizeSelected)>0 && strlen($this->subcategorySelected)>0){
+            return view('livewire.filters', [
+                'products' => Product::join('products_sizes', 'products_sizes.product_id', '=', 'products.id')->where('products_sizes.size_id', '=', "$sizeSelected")->where('category_id', '=', "$categoryId")->where('subcategory_id', '=', "$subcategorySelected")->where('gender_id', '=', "$genderId")->select('products.*', 'products_sizes.product_id')->paginate(9),
+            ]);    
+        }
+        if(strlen($this->sizeSelected)>0 && strlen($this->subcategorySelected)==0){
+            return view('livewire.filters', [
+                'products' => Product::join('products_sizes', 'products_sizes.product_id', '=', 'products.id')->where('products_sizes.size_id', '=', "$sizeSelected")->where('category_id', '=', "$categoryId")->where('gender_id', '=', "$genderId")->select('products.*', 'products_sizes.product_id')->paginate(9),
+            ]);    
+        }
+        else{
+            return view('livewire.filters', [
+                'products' => Product::where('category_id', '=', "$categoryId")->where('gender_id', '=', "$genderId")->paginate(9),
+            ]);
+        }
+
+
+
     }
+
+    public function filterSubcategory($id) {
+
+        if($this->subcategorySelected!=$id){
+            
+            $this->subcategorySelected = $id;
+
+        }
+
+        else if($this->subcategorySelected==$id){
+            
+            $this->subcategorySelected = '';
+
+        }
+        
+
+    }
+
+    public function filterSize($id) {
+ 
+        if($this->sizeSelected!=$id){
+            
+            $this->sizeSelected = $id;
+
+        }
+
+        else if($this->sizeSelected==$id){
+            
+            $this->sizeSelected = '';
+
+        }
+        
+    }
+
 }

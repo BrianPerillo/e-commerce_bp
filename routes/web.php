@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\CartController;
-use App\Http\Livewire\Filters;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +31,9 @@ Route::get('/cart/{user}/productos', [CartController::class, "index"])->name('us
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart/{product}', [CartController::class, "agregar_al_carrito"] )->name('agregar_al_carrito');
 
-Route::get('/remeras/{category}/{gender}', [Filters::class, "render"])->name('productos.remeras');
-Route::get('/buzos/{category}/{gender}', [Filters::class, "render"])->name('productos.buzos');
-Route::get('/pantalones/{category}/{gender}', [Filters::class, "render"])->name('productos.pantalones');
-Route::get('/zapatillas/{category}/{gender}', [Filters::class, "render"])->name('productos.zapatillas');
+Route::get('/remeras/{category}/{gender}', [ProductosController::class, "index"])->name('productos.remeras');
+Route::get('/buzos/{category}/{gender}', [ProductosController::class, "index"])->name('productos.buzos');
+Route::get('/pantalones/{category}/{gender}', [ProductosController::class, "index"])->name('productos.pantalones');
+Route::get('/zapatillas/{category}/{gender}', [ProductosController::class, "index"])->name('productos.zapatillas');
 
 Route::get('/{category}/{product}', [ProductosController::class, "show"])->name('productos.show');
