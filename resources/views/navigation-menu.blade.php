@@ -24,7 +24,7 @@
                                     <li class="p-2"><a href="{{ route('productos.remeras', ['1', '1']) }}">Remeras</a></li>
                                     <li class="p-2"><a href="{{ route('productos.buzos', ['2', '1']) }}">Buzos</a></li>
                                     <li class="p-2"><a href="{{ route('productos.pantalones', ['3', '1']) }}">Pantalones</a></li>
-                                    <li class="p-2"><a href="{{ route('productos.zapatillas', ['4', '1']) }}">Zapatillas</a></li>
+                                    {{-- <li class="p-2"><a href="{{ route('productos.zapatillas', ['4', '1']) }}">Zapatillas</a></li> --}}
                                 </ul>
                             </li>
                         </ul>
@@ -38,7 +38,7 @@
                                     <li class="p-2"><a href="{{ route('productos.remeras', ['1', '2']) }}">Remeras</li></a>
                                     <li class="p-2"><a href="{{ route('productos.buzos', ['2', '2']) }}">Buzos</a></li>
                                     <li class="p-2"><a href="{{ route('productos.pantalones', ['3', '2']) }}">Pantalones</a></li>
-                                    <li class="p-2"><a href="{{ route('productos.zapatillas', ['4', '2']) }}">Zapatillas</a></li>
+                                    {{-- <li class="p-2"><a href="{{ route('productos.zapatillas', ['4', '2']) }}">Zapatillas</a></li> --}}
                                 </ul>
                             </li>
                         </ul>

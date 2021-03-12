@@ -25,7 +25,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', "=", "$user->id")->get()->first();
         $cart_id = $cart->id;
 
-        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(5);
+        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(8);
 
         return view('user.cart')->with(compact('cart_products'));
 
@@ -48,7 +48,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', "=", "$user->id")->get()->first();
         $cart_id = $cart->id;
 
-        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(5);
+        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(8);
 
         //Guardo datos para consultar colores y talles disponibles de ese producto a editar
 
@@ -98,7 +98,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', "=", "$user->id")->get()->first();
 
         $cart_id = $cart->id;
-        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(5);
+        $cart_products = Cart_Product::where('cart_id', "$cart_id")->paginate(8);
 
 
         return redirect()->route('user.cart', "$user->id");
