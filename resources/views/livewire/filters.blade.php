@@ -1,20 +1,20 @@
 <div>
 
 
-            <div class="container" style="overflow: hidden">
-                    <h1>{{$name}}</h1>
+            <div class="container p-2" style="overflow: hidden">
+                    <h2 class="ml-2 p-1 pl-3 pr-3" style="width:240px;background-color:rgb(255, 130, 47);color:white;border-radius:10px">{{$name}}</h2> 
                     <br>
 
-                    <div class="row">
+                    <div class="row mt-2">
 
                         {{-- Columna para Filtros --}}
 
                         <div class="col-md-3 p-3 pl-4" style="height:100%;border-right:1px solid rgb(224, 224, 224)">
 
-                            <h2 class="mb-4 pl-3" style="font-size: 30px">Filtros</h2>
+                            <h2 hidden class="mb-4 pl-3" style="font-size: 30px">Filtros</h2>
 
                             <div class="col-md-12 mb-5">
-                                <h4 class="mb-3" style="font-size: 22px">Subcategoría</h4>
+                                <h4 class="mb-3" style="font-size: 22px">Tipo</h4>
                                     @foreach($subcategories as $subcategory)
                                         <button class="filter_button mb-2" id="subcategory" wire:click="filterSubcategory({{$subcategory->id}})" type="submit">
                                             @if($subcategorySelected==$subcategory->id)
@@ -112,7 +112,7 @@
                                                                             <strong>COLORES</strong>
                                                                             <div class="colors">
                                                                                 @foreach ($product->colors as $color)
-                                                                                    <div class="c float-left mr-1" style="width:14px;height:14px;background-color:{{$color->color}};border:1px solid #e2e2e2;border-radius:15px"></div> 
+                                                                                    <div class="c float-left mr-1" style="width:14px;height:14px;background-color:{{$color->color}};border:1px solid #dbdbdb;;border-radius:15px"></div> 
                                                                                 @endforeach
                                                                             </div>
                                                                         </div>                

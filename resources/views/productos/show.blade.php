@@ -33,7 +33,7 @@
 
             <div class="row d-flex justify-content-center">
 
-                <div class="col-md-5 p-0 m-3" style="border-right: 1px solid rgb(196, 196, 196)">
+                <div class="col-md-5 p-0 m-3" style="">
 
                     <figure class="zoom m-auto" onmousemove="zoom(event)" style="width:350px;height:350px;background-image: url({{$product->photo}})">
                         <img id="photo" class="p-0 m-auto" src="{{$product->photo}}" alt="Remera Negra" style="width:350px;height:350px;"><br>
@@ -42,7 +42,7 @@
                     <div class="p-3">
 
                         <div>
-                            <p>{{$product->name}}</p>
+                            <p class="mt-4" style="text-align:center;font-size: 15px;color: #a0a0a0;font-weight: 700;">{{$product->name}}</p>
                         </div>                  
 
                     </div>
@@ -52,16 +52,25 @@
 
                 {{-- Card Formulario Carrito --}}
                 
-                    <div id="add_cart_card" class="col-md-6 m-3 p-3">
+                    <div id="add_cart_card" class="col-md-6 m-3 p-4">
 
                         <form class="col-md-12" action="{{route('agregar_al_carrito', $product) }}">
                             {{-- Color --}}
                             <div class="col mx-auto p-2 mb-3" style="border-radius:10px;" >
-                                <label for="color">Seleccioná el color</label>
+                                <label for="color">Color</label>
                                 <div>
+                                    @php $contador=1 @endphp
                                     @foreach($product->colors as $color) 
-                                        <input id="{{$color->color}}" type="radio" name="color" value="{{$color->id}}" style="display: none">
+                                    
+                                        @if($contador==1)
+                                            <input checked id="{{$color->color}}" type="radio" name="color" value="{{$color->id}}" style="display: none">
+                                        @else 
+                                            <input id="{{$color->color}}" type="radio" name="color" value="{{$color->id}}" style="display: none">
+                                        @endif
+
                                         <label for="{{$color->color}}"><div style="background-color: {{$color->color}};border-radius:20px"></div></label>
+
+                                        @php $contador=$contador+1 @endphp
                                     @endforeach
                                 </div>
                                 @error('color')
@@ -70,7 +79,7 @@
                             </div>
                             {{-- Talle --}}
                             <div class="col mx-auto p-2 mb-3" style="border-radius:10px;">
-                                <label>Seleccioná el talle</label>
+                                <label>Talle</label>
                                 <select class="form-control" name="size">
                                     @foreach($product->sizes as $size) 
                                     <option value="{{$size->id}}">{{$size->name}}</option>
@@ -80,14 +89,14 @@
                             </div>
                             {{-- Cantidad --}}
                             <div class="col mx-auto p-2 mb-4" style="border-radius:10px;">
-                                <label for="color">Elegí la cantidad</label>
+                                <label for="quantity">Cantidad</label>
                                 <div>
                                     <input class="form-control" type="number" name="quantity" id="" value="1"  min="1"> 
                                 </div>
                                 
                             </div>
                             <div class="float-right p-3 mb-3" style="">
-                                <p style="padding: 0px; margin:0px;"><strong>Precio: ${{$product->price}}</strong></p>
+                                <p class="product_price" style="padding: 0px; margin:0px;"><strong>Precio: ${{$product->price}}</strong></p>
                             </div>
 
                             <div class="col mx-auto">
@@ -102,16 +111,17 @@
 
             {{-- Descripción del producto --}}
 
-            <div class="m-3 mt-5 mb-5 p-3" style="border-radius:5px;background-color: rgba(241, 241, 241, 0.438)">
-                <p><small>Descripción:</small></p>
-                <p class="ml-3"><small>{{$product->description}}</small></p>
+            <div class="mb-5 p-3" style="margin-top:80px;border-radius:5px; box-shadow: 1px 1px 5px rgba(173, 173, 173, 0.5);">
+                <p><strong>Descripción:</strong></p>
+                <p style="font-size: 15px" class="ml-3">{{$product->description}}</p>
+                <p style="font-size: 15px" class="ml-3">{{$product->description}}</p>
             </div>
 
 
         {{-- MENÚ PESTAÑAS CON DESCRIPCIÓN, MEDIOS DE PAGO ETC --}}
 
 
-            <div class="">
+            <div class="" style="margin-top:100px">
                 <!-- Tab items -->
                 <div class="tabs">
                   <div class="tab-item active">
@@ -133,20 +143,20 @@
                 <div class="tab-content">
                     <div class="tab-pane active">
                         <h2 style="display: none">Medios de Pago</h2>
-                        <p><i class="fas fa-shopping-bag"></i>
+                        <p><i style="color: rgb(255, 130, 47)" class="fas fa-shopping-bag"></i>
                             Medios de Pago - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </div>
                     <div class="tab-pane">
                         <h2 style="display: none">Envíos</h2>
-                        <p><i class="fas fa-paper-plane"></i>
+                        <p><i style="color: rgb(255, 130, 47)" class="fas fa-paper-plane"></i>
                             Envíos - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </div>
                     <div class="tab-pane">
                         <h2 style="display: none">Ayuda</h2>
                         
-                        <p><i class="far fa-question-circle"></i>
+                        <p><i style="color: rgb(255, 130, 47)" class="far fa-question-circle"></i>
                             Ayuda - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </div>

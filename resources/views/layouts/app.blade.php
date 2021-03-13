@@ -39,7 +39,7 @@
 
             <!-- Page Content -->
             <main style="min-height:86vh">
-                {{ $slot }}
+              {{ $slot }}
                
             </main>
          <x-footer></x-footer>

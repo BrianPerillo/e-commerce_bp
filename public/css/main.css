@@ -26,6 +26,48 @@ a:hover {
     
 }
 
+#add_cart_card{
+  background-color:white;
+  -webkit-box-shadow: 0rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 4px 12px rgba(189, 189, 189, 0.336);
+  border-radius:10px;
+}
+
+.product_price{
+	float:right;
+	color:#18b5f8ec;
+	font-size:19px;
+	font-weight:600;
+}
+
+.readMoreBtn {
+  background-image: linear-gradient(45deg, #febd3a 1%, #fd3838);
+  padding: 0.5rem 1.5rem;
+  border-radius: 31.25rem;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  text-transform: uppercase;
+  outline: 0;
+  transition: all 300ms;
+  -webkit-box-shadow: 0rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
+          
+}
+
+.readMoreBtn:hover {
+  background-image: linear-gradient(45deg, #fd3838 1%, #febd3a);
+  /* padding: 0.7rem 1.5rem; */
+  border-radius: 31.25rem;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  text-transform: uppercase;
+  outline: 0;
+  -webkit-box-shadow: 0rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
+}
+
 .product_show{   /* card */
     /* box-shadow: 1px 1px 5px rgba(184, 184, 184, 0.781); */
     border-radius:10px;
@@ -76,7 +118,7 @@ input[type="radio"] + label div {
     cursor:pointer;
     width:22px;
     height:22px;
-    border: 1px solid black;
+    border: 1px solid #dbdbdb;
 }
 
 input[type="radio"]:checked + label div {
@@ -203,7 +245,7 @@ input[type="radio"]:checked + label div {
     width: 0;
     height: 6px;
     border-radius: 15px;
-    background-color: #279bc9dc;
+    background-color: rgb(255, 130, 47);
     transition: all 0.2s ease;
   }
   .tab-item {
@@ -211,7 +253,7 @@ input[type="radio"]:checked + label div {
     padding: 16px 20px 11px 20px;
     font-size: 20px;
     text-align: center;
-    color: #279bc9dc; 
+    color: rgb(255, 130, 47);
     background-color: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -228,8 +270,8 @@ input[type="radio"]:checked + label div {
   }
   .tab-item:hover {
     opacity: 1;
-    background-color: #279bc917;
-    border-color: #279bc917;
+    /* background-color: #ff88001e; */
+    border-color: #ff88004f;
   }
   .tab-item.active {
     opacity: 1;
