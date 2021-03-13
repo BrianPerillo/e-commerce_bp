@@ -22,6 +22,8 @@
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
             <!-- Slider -->
             <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
+            <!-- Product Card -->
+            <link rel="stylesheet" href="{{ asset('css/product_card.css') }}">
             <!-- Propios -->
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
@@ -52,6 +54,7 @@
 </html>
 
 @livewireScripts
+<!-- Main -->
 <script src="{{ asset('js/main.js') }}" defer></script>
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
