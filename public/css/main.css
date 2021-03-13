@@ -203,7 +203,7 @@ input[type="radio"]:checked + label div {
     width: 0;
     height: 6px;
     border-radius: 15px;
-    background-color: #c23564;
+    background-color: #279bc9dc;
     transition: all 0.2s ease;
   }
   .tab-item {
@@ -211,7 +211,7 @@ input[type="radio"]:checked + label div {
     padding: 16px 20px 11px 20px;
     font-size: 20px;
     text-align: center;
-    color: #c23564;
+    color: #279bc9dc; 
     background-color: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -228,8 +228,8 @@ input[type="radio"]:checked + label div {
   }
   .tab-item:hover {
     opacity: 1;
-    background-color: rgba(194, 53, 100, 0.05);
-    border-color: rgba(194, 53, 100, 0.1);
+    background-color: #279bc917;
+    border-color: #279bc917;
   }
   .tab-item.active {
     opacity: 1;

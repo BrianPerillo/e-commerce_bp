@@ -12,6 +12,15 @@ use App\Models\Size;
 
 class ProductosController extends Controller
 {
+
+    public function home(){ 
+
+        $products = Product::offset(32)->limit(3)->get()->all();
+        
+
+        return view('index')->with(compact('products'));
+
+    }
     
     public function index(Category $category, Gender $gender){
         //Ya no paso más los roducctos, sino que los consigue el componente de livewire para no tener problema con la paginación

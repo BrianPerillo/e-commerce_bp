@@ -95,7 +95,7 @@
                                                                 <img src="{{$product->photo}}"  style="width:200px;height:200px;margin:auto;"alt="" />
                                                                 <div class="image_overlay"></div>
                                                                 {{-- <div class="add_to_cart">Add to cart</div> --}}
-                                                                <a href="{{route('productos.show', [$product->category, $product])}}" class="view_gallery">Detalle</a>
+                                                                <a href="{{route('productos.show', [$product->category, $product])}}" class="view_gallery">Ver Producto</a>
                                                                 <div class="stats">        	
                                                                     <div class="p-3 stats-container">
                                                                         <span class="product_price">${{$product->price}}</span>

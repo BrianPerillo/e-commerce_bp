@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->name('dashboard');
 
-Route::get('/', function () {
-         return view('index');
-})->name('index');
+Route::get('/', [ProductosController::class, "home"] )->name('index');
 
 Route::get('/editform/{cart_product}', [CartController::class, "form_edit_cart"] )->name('edit.carrito');
 Route::put('/edit/{cart_product}', [CartController::class, "edit_cart"] )->name('confirm_edit.carrito');
