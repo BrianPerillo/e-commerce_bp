@@ -304,10 +304,10 @@ div.make3D.flip180{
 	/* box-shadow:0px 5px 31px -1px rgba(0, 0, 0, 0.15); */
     box-shadow: 2px 2px 20px rgba(202, 202, 202, 0.781);
     border-radius:10px;
-	-webkit-transition:  100ms ease-out; 
-       -moz-transition:  100ms ease-out; 
-         -o-transition:  100ms ease-out; 
-            transition:  100ms ease-out; 
+	-webkit-transition: all 350ms ease-out; 
+       -moz-transition:  all 350ms ease-out; ; 
+         -o-transition:  all 350ms ease-out; 
+            transition:  all 350ms ease-out; 
 }
 .make3D:hover .stats-container{
 	top:100px;
@@ -441,8 +441,9 @@ div.large .make3D{
 	width:152px;
 	font-size:15px;
 	margin-left:-78px;
-	border:2px solid #fff;
-	color:#fff;	
+	background-color: #ffffffd0;
+	border:2px solid #5ff7d2;
+	color: #5ff7d2;
 	text-align:center;
 	text-transform:uppercase;
 	font-weight:700;
@@ -454,8 +455,9 @@ div.large .make3D{
             transition: all 200ms ease-out; 
 }
 .view_gallery:hover{	
-	background:#fff;
-	color:#5ff7d2;
+	background:#5ff7d1cb;
+	border:2px solid #ffffff;
+	color:#ffffff;
 	cursor:pointer;
 
 }

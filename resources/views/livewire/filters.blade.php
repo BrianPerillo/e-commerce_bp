@@ -49,9 +49,7 @@
                         <div class="col-md-9">
    
                             <div class="row mb-5">
-                                @php
-                                    $contador = 1;
-                                @endphp
+                               
                                 @foreach ($products as $product)
                                     <div class="col-md-4 p-2">
                                         <div class="col-md-12 p-2">
@@ -91,7 +89,7 @@
                                                                         
                                                         </div>
                                                         
-                                                        <div class="make3D {{"make3D"."$contador"}}">
+                                                        <div class="make3D">
                                                             <div class="p-3 product-front">
                                                                 <div class="shadow"></div>
                                                                 <img src="{{$product->photo}}"  style="width:200px;height:200px;margin:auto;"alt="" />
@@ -152,9 +150,7 @@
                                             {{-- </div> --}}
                                         </div>
                                     </div>
-                                    @php
-                                        $contador = $contador+1;
-                                    @endphp
+
                                     {{-- <div class="col-md-4 p-2">
                                         <div class="col-md-12 p-2 product_show">
                                                 <a class="" href="{{route('productos.show', [$product->category, $product])}}" style="">
