@@ -34,6 +34,9 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
+        <x-header>
+        </x-header>
+
         <div class="min-h-screen">
             @livewire('navigation-menu')
 
@@ -63,3 +66,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- Product Card-->
+<script src="{{ asset('js/product_card.js') }}" defer></script>

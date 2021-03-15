@@ -14,6 +14,3 @@
 
     </div>
 </x-app-layout>
-
-<!-- Product Card-->
-<script src="{{ asset('js/product_card.js') }}" defer></script>
